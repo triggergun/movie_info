@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Unnamed" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+    <deployment type="dockerfile">
+      <settings>
+        <option name="imageTag" value="movie:1.0" />
+        <option name="containerName" value="movie-core" />
+        <option name="sourceFilePath" value="movie-core/Dockerfile" />
+      </settings>
+    </deployment>
+    <method v="2">
+      <option name="Maven.BeforeRunTask" enabled="true" file="E:\movie\movie-core/pom.xml" goal="clean package -U -DskipTests" />
+    </method>
+  </configuration>
+</component>
