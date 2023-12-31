@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.wutunan.moviecore.dao.TbUpdataMovieDao">
+  <resultMap id="BaseResultMap" type="top.wutunan.moviecore.pojo.TbUpdataMovie">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="source" jdbcType="VARCHAR" property="source" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="movie_name" jdbcType="VARCHAR" property="movieName" />
+    <result column="updata_time" jdbcType="VARCHAR" property="updataTime" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="context" jdbcType="VARCHAR" property="context" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="get_time" jdbcType="TIMESTAMP" property="getTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `source`, image_url, movie_name, updata_time, `number`, context, `type`, get_time
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_updata_movie
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_updata_movie
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="top.wutunan.moviecore.pojo.TbUpdataMovie" useGeneratedKeys="true">
+    insert into tb_updata_movie (`source`, image_url, movie_name, 
+      updata_time, `number`, context, 
+      `type`, get_time)
+    values (#{source,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}, #{movieName,jdbcType=VARCHAR}, 
+      #{updataTime,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, #{context,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{getTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="top.wutunan.moviecore.pojo.TbUpdataMovie" useGeneratedKeys="true">
+    insert into tb_updata_movie
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="source != null">
+        `source`,
+      </if>
+      <if test="imageUrl != null">
+        image_url,
+      </if>
+      <if test="movieName != null">
+        movie_name,
+      </if>
+      <if test="updataTime != null">
+        updata_time,
+      </if>
+      <if test="number != null">
+        `number`,
+      </if>
+      <if test="context != null">
+        context,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="getTime != null">
+        get_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="movieName != null">
+        #{movieName,jdbcType=VARCHAR},
+      </if>
+      <if test="updataTime != null">
+        #{updataTime,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="context != null">
+        #{context,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="getTime != null">
+        #{getTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.wutunan.moviecore.pojo.TbUpdataMovie">
+    update tb_updata_movie
+    <set>
+      <if test="source != null">
+        `source` = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="movieName != null">
+        movie_name = #{movieName,jdbcType=VARCHAR},
+      </if>
+      <if test="updataTime != null">
+        updata_time = #{updataTime,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        `number` = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="context != null">
+        context = #{context,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="getTime != null">
+        get_time = #{getTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.wutunan.moviecore.pojo.TbUpdataMovie">
+    update tb_updata_movie
+    set `source` = #{source,jdbcType=VARCHAR},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      movie_name = #{movieName,jdbcType=VARCHAR},
+      updata_time = #{updataTime,jdbcType=VARCHAR},
+      `number` = #{number,jdbcType=VARCHAR},
+      context = #{context,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=VARCHAR},
+      get_time = #{getTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
