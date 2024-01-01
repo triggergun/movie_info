@@ -1,9 +1,18 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Unnamed" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+  <configuration default="false" name="movie-core" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
     <deployment type="dockerfile">
       <settings>
         <option name="imageTag" value="movie:1.0" />
         <option name="containerName" value="movie-core" />
+        <option name="portBindings">
+          <list>
+            <DockerPortBindingImpl>
+              <option name="containerPort" value="8080" />
+              <option name="hostIp" value="0.0.0.0" />
+              <option name="hostPort" value="8080" />
+            </DockerPortBindingImpl>
+          </list>
+        </option>
         <option name="sourceFilePath" value="movie-core/Dockerfile" />
       </settings>
     </deployment>
