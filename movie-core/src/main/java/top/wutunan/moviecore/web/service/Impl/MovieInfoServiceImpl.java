@@ -36,8 +36,8 @@ public class MovieInfoServiceImpl implements MovieInfoService {
     @Override
     public ApiResult getTbUpdataMoviePage(Integer currentPage, Integer pageSize) {
 
-        currentPage =  currentPage == null ? 1: currentPage;
-        pageSize =  pageSize == null ? 20: pageSize;
+        currentPage = currentPage == null ? 1 : currentPage;
+        pageSize = pageSize == null ? 20 : pageSize;
         // page info object
         top.wutunan.moviecore.bean.Page page = new top.wutunan.moviecore.bean.Page(currentPage, pageSize);
         QueryWrapper<TbUpdataMovie> tbUpdataMovieQueryWrapper = new QueryWrapper<>();
@@ -51,5 +51,11 @@ public class MovieInfoServiceImpl implements MovieInfoService {
         map.put("page", page);
         System.out.println(page.toString());
         return new ApiResult(map);
+    }
+
+    @Override
+    public ApiResult selectByKeyword(String keyword) {
+        List<TbUpdataMovie> list = tbUpdataMovieDao.selectByKeyword(keyword);
+        return new ApiResult(list);
     }
 }

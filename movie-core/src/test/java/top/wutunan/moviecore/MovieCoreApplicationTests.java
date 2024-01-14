@@ -10,6 +10,8 @@ import top.wutunan.moviecore.dao.TbUpdataMovieDao;
 import top.wutunan.moviecore.pojo.TbUpdataMovie;
 import top.wutunan.moviecore.web.service.Impl.MovieInfoServiceImpl;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class MovieCoreApplicationTests {
@@ -42,6 +44,24 @@ class MovieCoreApplicationTests {
         ApiResult movieList = movieInfoService.getTbUpdataMoviePage(2,50);
         System.out.println(movieList.toString());
     }
+
+
+    /**
+     * 分页查询接口
+     *
+     * 通过电影名字。
+     * 电影的获取时间。
+     */
+    @Test
+    void contextLoads03() {
+        List<TbUpdataMovie> list = tbUpdataMovieDao.selectByKeyword("1");
+
+        for (TbUpdataMovie tbUpdataMovie : list) {
+
+            System.out.println(tbUpdataMovie);
+        }
+    }
+
 
 
 }

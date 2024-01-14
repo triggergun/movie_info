@@ -22,10 +22,24 @@ public class MovieInfoController {
         return movieList;
     }
 
+    /**
+     * 前端下拉刷新 接口。翻页的功能。
+     * @param currentPage
+     * @param pageSize
+     * @return
+     */
     @GetMapping("/page/list")
     public ApiResult getMoviePageList(Integer currentPage,Integer pageSize){
 
         ApiResult movieList = movieInfoService.getTbUpdataMoviePage(currentPage,pageSize);
+        return movieList;
+    }
+
+    @GetMapping("/keyword/list")
+    public ApiResult getMovieByKeywordList(String keyword){
+
+        // 关键字查询。
+        ApiResult movieList = movieInfoService.selectByKeyword(keyword);
         return movieList;
     }
 

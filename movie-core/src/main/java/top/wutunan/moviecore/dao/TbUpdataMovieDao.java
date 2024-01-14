@@ -6,14 +6,15 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
 import top.wutunan.moviecore.pojo.TbUpdataMovie;
 
+import java.util.List;
+
 @Mapper
 public interface TbUpdataMovieDao extends BaseMapper<TbUpdataMovie> {
 
 
+    List<TbUpdataMovie> selectByKeyword(String keyword);
 
     int deleteByPrimaryKey(Integer id);
-
-
 
 
     int insert(TbUpdataMovie record);
