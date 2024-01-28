@@ -11,9 +11,11 @@ import top.wutunan.moviecore.dao.TbUpdataMovieDao;
 import top.wutunan.moviecore.pojo.TbUpdataMovie;
 import top.wutunan.moviecore.web.service.MovieInfoService;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class MovieInfoServiceImpl implements MovieInfoService {
@@ -27,6 +29,7 @@ public class MovieInfoServiceImpl implements MovieInfoService {
 
         QueryWrapper<TbUpdataMovie> tbUpdataMovieQueryWrapper = new QueryWrapper<>();
         List<TbUpdataMovie> tbUpdataMovies = tbUpdataMovieDao.selectList(tbUpdataMovieQueryWrapper);
+
         ApiResult apiResult = new ApiResult();
         apiResult.setData(tbUpdataMovies);
         return apiResult;
@@ -54,8 +57,19 @@ public class MovieInfoServiceImpl implements MovieInfoService {
     }
 
     @Override
-    public ApiResult selectByKeyword(String keyword) {
+    public ApiResult selectByKeyword(String keyword, Integer currentPage, Integer pageSize) {
+
+        currentPage = currentPage == null ? 1 : currentPage;
+        pageSize = pageSize == null ? 20 : pageSize;
+        // page info object
+        top.wutunan.moviecore.bean.Page page = new top.wutunan.moviecore.bean.Page(currentPage, pageSize);
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
         List<TbUpdataMovie> list = tbUpdataMovieDao.selectByKeyword(keyword);
-        return new ApiResult(list);
+        page.setTotal(new PageInfo<>(list).getTotal());  // 总共多少条记录
+        Map<String, Object> map = new HashMap<>(2);
+        map.put("list", list);
+        map.put("page", page);
+        System.out.println(page.toString());
+        return new ApiResult(map);
     }
 }

@@ -11,11 +11,11 @@ public interface MovieInfoService  {
 
 
     /**
-     * list 查询接口
+     * list 查询接口。小程序的搜索接口。
      * @param keyword
      * @return
      */
-    ApiResult selectByKeyword(String keyword);
+    ApiResult selectByKeyword(String keyword, Integer currentPage, Integer pageSize);
 
     public ApiResult getMovieList();
 

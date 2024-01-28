@@ -26,7 +26,11 @@ public class TbUpdataMovie implements Serializable {
 
     private String type;
 
-    private Date getTime;
+
+    /**
+     * String  不要时间转换。直接就是写入时的格式。
+     */
+    private String getTime;
 
     private static final long serialVersionUID = 1L;
 }

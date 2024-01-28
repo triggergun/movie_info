@@ -17,7 +17,6 @@ public class MovieInfoController {
 
     @GetMapping("/list")
     public ApiResult getMovieList(){
-
         ApiResult movieList = movieInfoService.getMovieList();
         return movieList;
     }
@@ -35,11 +34,16 @@ public class MovieInfoController {
         return movieList;
     }
 
+    /**
+     * 影视信息的搜索接口，有分页的功能。
+     * @param keyword
+     * @return
+     */
     @GetMapping("/keyword/list")
-    public ApiResult getMovieByKeywordList(String keyword){
+    public ApiResult getMovieByKeywordList(String keyword, Integer currentPage, Integer pageSize){
 
         // 关键字查询。
-        ApiResult movieList = movieInfoService.selectByKeyword(keyword);
+        ApiResult movieList = movieInfoService.selectByKeyword(keyword, currentPage, pageSize);
         return movieList;
     }
 
